@@ -18,6 +18,19 @@ public class EnemyFactory
         var enemy = pool.Get();
         activeEnemies.Add(enemy);
         GameManager.Instance.RegisterEntity(enemy);
+
+        // Conectar colisiones con el jugador
+        var player = GameManager.Instance.Player;
+        if (player != null)
+        {
+            player.Collider.others.Add(enemy.Collider);
+            enemy.Collider.others.Add(player.Collider);
+
+            enemy.Collider.OnCollision += (c) =>
+            {
+                GameManager.Instance.SetScene(new LoseScene());
+            };
+        }
     }
 
     public void DespawnAll()
