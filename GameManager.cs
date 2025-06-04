@@ -40,7 +40,10 @@ public class GameManager
     {
         GameTime += deltaTime;
 
-        foreach (var u in updatables)
+        // Create a copy of the list to iterate over
+        var updatablesCopy = new List<IUpdatable>(updatables);
+
+        foreach (var u in updatablesCopy)
             u.Update(deltaTime);
     }
 

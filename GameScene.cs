@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public class GameScene : IScene
 {
     Image playerImg = Engine.LoadImage("assets/player.png");
-    Image ghostImg = Engine.LoadImage("assets/ghost.png");
-    Image background = Engine.LoadImage("assets/background.png");
+    Image ghostImg = Engine.LoadImage("assets/FantasmitaUwU.png");
+    Image background = Engine.LoadImage("assets/bosquetenebrosoUUUUUU.png");
 
     float spawnTimer = 0;
 

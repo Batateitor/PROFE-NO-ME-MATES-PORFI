@@ -74,8 +74,12 @@
     <Compile Include="WinScene.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
     <None Include="App.config" />
-    <None Include="assets\arial.ttf" />
+    <None Include="assets\arial.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="assets\ARIALBD 1.TTF" />
     <None Include="assets\ARIALBD.TTF" />
     <None Include="assets\ARIALBI 1.TTF" />
@@ -122,6 +126,9 @@
     <Content Include="assets\Asteroid\Idle\3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="assets\bosquetenebrosoUUUUUU.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\bullet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -159,6 +166,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\Enemy\Idle\3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\FantasmitaUwU.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\fondo.png">
