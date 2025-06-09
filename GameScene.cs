@@ -8,15 +8,20 @@ public class GameScene : IScene
     Image background = Engine.LoadImage("assets/bosquetenebrosoUUUUUU.png");
 
     float spawnTimer = 0;
+    private List<Enemy> activeEnemies = new List<Enemy>();
 
     public void Start()
     {
+        Image imgWhite = Engine.LoadImage("assets/FantasmitaUwU.png");
+        Image imgBlue = Engine.LoadImage("assets/FantasmitaUwUAzul.png");
+        Image imgRed = Engine.LoadImage("assets/FantasmitaUwURojo.png");
+
+        GameManager.Instance.EnemyFactory = new EnemyFactory(imgWhite, imgBlue, imgRed);
+
         GameManager.Instance.GameTime = 0;
 
         GameManager.Instance.Player = new Player(playerImg);
         GameManager.Instance.RegisterEntity(GameManager.Instance.Player);
-
-        GameManager.Instance.EnemyFactory = new EnemyFactory(ghostImg);
 
         for (int i = 0; i < 5; i++)
             GameManager.Instance.EnemyFactory.Spawn();

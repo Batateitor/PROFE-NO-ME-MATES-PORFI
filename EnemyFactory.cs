@@ -1,36 +1,58 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class EnemyFactory
 {
-    private ObjectPool<Enemy> pool;
-    private Image enemyImage;
-    private List<Enemy> activeEnemies;
+    private ObjectPool<Enemy> poolWhite;
+    private ObjectPool<EnemyBlue> poolBlue;
+    private ObjectPool<EnemyRed> poolRed;
 
-    public EnemyFactory(Image image)
+    private Image imgWhite;
+    private Image imgBlue;
+    private Image imgRed;
+
+    private List<Enemy> activeEnemies = new List<Enemy>(); // Fixed type to match List<Enemy>
+
+    private Random rand = new Random();
+
+    public EnemyFactory(Image white, Image blue, Image red)
     {
-        enemyImage = image;
-        pool = new ObjectPool<Enemy>(() => new Enemy(enemyImage));
-        activeEnemies = new List<Enemy>();
+        imgWhite = white;
+        imgBlue = blue;
+        imgRed = red;
+
+        poolWhite = new ObjectPool<Enemy>(() => new Enemy(imgWhite));
+        poolBlue = new ObjectPool<EnemyBlue>(() => new EnemyBlue(imgBlue));
+        poolRed = new ObjectPool<EnemyRed>(() => new EnemyRed(imgRed));
+
+        // Removed redundant initialization of activeEnemies
     }
 
     public void Spawn()
     {
-        var enemy = pool.Get();
+        int type = rand.Next(0, 3);
+        Enemy enemy = null; // Changed type to Enemy to match List<Enemy>
+
+        switch (type)
+        {
+            case 0: enemy = poolWhite.Get(); break;
+            case 1: enemy = poolBlue.Get(); break;
+            case 2: enemy = poolRed.Get(); break;
+        }
+
+        enemy.ResetLifetime(); // Reinicia el tiempo de vida
+
         activeEnemies.Add(enemy);
         GameManager.Instance.RegisterEntity(enemy);
 
-        // Conectar colisiones con el jugador
-        var player = GameManager.Instance.Player;
-        if (player != null)
-        {
-            player.Collider.others.Add(enemy.Collider);
-            enemy.Collider.others.Add(player.Collider);
+        // Configurar colisiones
+        enemy.Collider.others.Add(GameManager.Instance.Player.Collider);
+        GameManager.Instance.Player.Collider.others.Add(enemy.Collider);
 
-            enemy.Collider.OnCollision += (c) =>
-            {
-                GameManager.Instance.SetScene(new LoseScene());
-            };
-        }
+        enemy.Collider.OnCollision += (c) =>
+        {
+            GameManager.Instance.SetScene(new LoseScene());
+        };
     }
 
     public void DespawnAll()
@@ -38,8 +60,26 @@ public class EnemyFactory
         foreach (var e in activeEnemies)
         {
             GameManager.Instance.UnregisterEntity(e);
-            pool.Return(e);
+            if (e is EnemyRed red)
+                poolRed.Return(red);
+            else if (e is EnemyBlue blue)
+                poolBlue.Return(blue);
+            else if (e is Enemy white)
+                poolWhite.Return(white);
         }
         activeEnemies.Clear();
+    }
+
+    public void Despawn(Enemy enemy)
+    {
+        GameManager.Instance.UnregisterEntity(enemy);
+        activeEnemies.Remove(enemy);
+
+        if (enemy is EnemyRed red)
+            poolRed.Return(red);
+        else if (enemy is EnemyBlue blue)
+            poolBlue.Return(blue);
+        else
+            poolWhite.Return(enemy);
     }
 }
