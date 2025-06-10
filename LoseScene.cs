@@ -4,10 +4,21 @@
 
     public void Start() { }
 
-    public void Update(){ }
+    public void Update()
+    {
+        if (Engine.GetKey(Engine.KEY_M))
+        {
+            GameManager.Instance.SetScene(new MainMenuScene());
+        }
+        else if (Engine.GetKey(Engine.KEY_ESP))
+        {
+            GameManager.Instance.SetScene(new GameScene());
+        }
+    }
 
     public void Render()
     {
         Engine.DrawText("YOU LOSE!", 450, 350, 255, 0, 0, font);
+        Engine.DrawText("M: Menú   ESPACIO: Reintentar", 350, 400, 255, 255, 255, font);
     }
 }
