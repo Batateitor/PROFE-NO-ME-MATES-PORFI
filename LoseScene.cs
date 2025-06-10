@@ -4,7 +4,7 @@
 
     public void Start() { }
 
-    public void Update() { }
+    public void Update(){ }
 
     public void Render()
     {
