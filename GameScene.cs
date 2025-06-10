@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MyGame; // Agrega esta directiva para usar Timer
 
 public class GameScene : IScene
 {
@@ -9,6 +10,7 @@ public class GameScene : IScene
 
     float spawnTimer = 0;
     private List<Enemy> activeEnemies = new List<Enemy>();
+    private Timer timer; // Agrega el Timer
 
     public void Start()
     {
@@ -26,7 +28,6 @@ public class GameScene : IScene
         for (int i = 0; i < 5; i++)
             GameManager.Instance.EnemyFactory.Spawn();
 
-        // Conectar colisiones
         foreach (var enemy in GameManager.Instance.EnemyFactory.GetType().GetField("activeEnemies", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(GameManager.Instance.EnemyFactory) as List<Enemy>)
         {
             GameManager.Instance.Player.Collider.others.Add(enemy.Collider);
@@ -37,6 +38,8 @@ public class GameScene : IScene
                 GameManager.Instance.SetScene(new LoseScene());
             };
         }
+
+        timer = new Timer(30f); // Inicializa el Timer con 30 segundos
     }
 
     public void Update(float deltaTime)
@@ -48,9 +51,10 @@ public class GameScene : IScene
             spawnTimer = 0;
         }
 
+        timer.Update(deltaTime); // Actualiza el Timer
         GameManager.Instance.Update(deltaTime);
 
-        if (GameManager.Instance.GameTime >= 30f)
+        if (timer.IsComplete())
             GameManager.Instance.SetScene(new WinScene());
     }
 
@@ -58,6 +62,9 @@ public class GameScene : IScene
     {
         Engine.Draw(background, 0, 0);
         GameManager.Instance.Draw();
+
+        int x = 1024 - 10 - 220;
+        int y = 10;
+        timer.Draw(x, y); // Dibuja el Timer en pantalla
     }
 }
-
