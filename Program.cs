@@ -35,10 +35,12 @@ class Program
             }
             else if (GameManager.Instance.currentScene is WinScene win)
             {
+                win.Update();
                 win.Render();
             }
             else if (GameManager.Instance.currentScene is LoseScene lose)
             {
+                lose.Update();
                 lose.Render();
             }
 

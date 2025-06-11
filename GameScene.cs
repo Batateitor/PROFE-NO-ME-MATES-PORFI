@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MyGame; // Agrega esta directiva para usar Timer
+using MyGame;
 
 public class GameScene : IScene
 {
@@ -10,7 +10,7 @@ public class GameScene : IScene
 
     float spawnTimer = 0;
     private List<Enemy> activeEnemies = new List<Enemy>();
-    private Timer timer; // Agrega el Timer
+    private Timer timer;
 
     public void Start()
     {
