@@ -1,8 +1,13 @@
-﻿public class LoseScene : IScene
+﻿using MyGame;
+
+public class LoseScene : IScene
 {
     Font font = Engine.LoadFont("assets/arial.ttf", 30);
 
-    public void Start() { }
+    public void Start() 
+    {
+        CarrotScore.Instance.ResetScore();
+    }
 
     public void Update()
     {

@@ -14,7 +14,7 @@ public class Enemy : Entity, IPoolable
 
     public void ResetLifetime()
     {
-        lifetime = 15f; // 15 segundos
+        lifetime = 20f; // 20 segundos
     }
 
     public override void Update(float deltaTime)

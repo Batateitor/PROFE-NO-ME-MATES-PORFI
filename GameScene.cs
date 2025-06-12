@@ -12,6 +12,10 @@ public class GameScene : IScene
     private List<Enemy> activeEnemies = new List<Enemy>();
     private Timer timer;
 
+    // Agrega estos campos en tu clase GameScene
+    private List<Carrot> activeCarrots = new List<Carrot>();
+    private CarrotFactory carrotFactory = new CarrotFactory();
+
     public void Start()
     {
         Image imgWhite = Engine.LoadImage("assets/FantasmitaUwU.png");
@@ -25,7 +29,7 @@ public class GameScene : IScene
         GameManager.Instance.Player = new Player(playerImg);
         GameManager.Instance.RegisterEntity(GameManager.Instance.Player);
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 2; i++)
             GameManager.Instance.EnemyFactory.Spawn();
 
         foreach (var enemy in GameManager.Instance.EnemyFactory.GetType().GetField("activeEnemies", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(GameManager.Instance.EnemyFactory) as List<Enemy>)
@@ -66,5 +70,9 @@ public class GameScene : IScene
         int x = 1024 - 10 - 220;
         int y = 10;
         timer.Draw(x, y); // Dibuja el Timer en pantalla
+
+        CarrotScore.Instance.DrawScore();
     }
+
+
 }

@@ -47,6 +47,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Carrot.cs" />
+    <Compile Include="CarrotType.cs" />
+    <Compile Include="CarrotFactory.cs" />
+    <Compile Include="CarrotScore.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="Collider.cs" />
     <Compile Include="Enemy.cs" />
@@ -145,6 +149,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\Bullet\Idle\3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\carrot_common.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\carrot_epic.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\carrot_rare.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\enemy.png">
