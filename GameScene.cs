@@ -15,6 +15,7 @@ public class GameScene : IScene
     // Agrega estos campos en tu clase GameScene
     private List<Carrot> activeCarrots = new List<Carrot>();
     private CarrotFactory carrotFactory = new CarrotFactory();
+    private Font font = Engine.LoadFont("assets/arial.ttf", 24);
 
     public void Start()
     {
@@ -69,10 +70,8 @@ public class GameScene : IScene
 
         int x = 1024 - 10 - 220;
         int y = 10;
-        timer.Draw(x, y); // Dibuja el Timer en pantalla
+        timer.Draw(x, y);
 
-        CarrotScore.Instance.DrawScore();
+        CarrotScore.Instance.Render(20, 20, font, 255, 255, 0);
     }
-
-
 }

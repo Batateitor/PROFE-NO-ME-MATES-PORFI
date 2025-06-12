@@ -35,12 +35,14 @@ namespace MyGame
             _score = 0;
         }
 
-        public void DrawScore()
+        public void Render(int x, int y, Font font, byte r = 255, byte g = 255, byte b = 0)
         {
-            int score = this.Score;
-            Console.SetCursorPosition(0, 0);
-            Console.Write($"Puntaje: {score}");
+            Engine.DrawText(
+                $"Puntaje: {_score}",
+                x, y,
+                r, g, b,
+                font
+            );
         }
-
     }
 }
