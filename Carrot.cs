@@ -5,12 +5,11 @@ public class Carrot : Entity
     public CarrotType Type { get; }
     public int Points { get; }
     public string ImagePath { get; }
-    public new Transform Transform { get; internal set; }
 
     public Carrot(CarrotType type)
         : base(new Image(GetImagePath(type)), 64, 64)
     {
-        Type = type;
+        this.Type = type;
         Points = GetPoints(type);
         ImagePath = GetImagePath(type);
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,6 @@ namespace MyGame
 
         public CarrotFactory(int poolSize = 20)
         {
-            // Inicializa el pool con zanahorias de diferentes tipos
             for (int i = 0; i < poolSize; i++)
             {
                 _pool.Enqueue(GetRandomType());
@@ -23,7 +23,6 @@ namespace MyGame
 
         private CarrotType GetRandomType()
         {
-            // Lógica para obtener un tipo aleatorio
             return (CarrotType)_random.Next(0, 3);
         }
 
@@ -39,12 +38,15 @@ namespace MyGame
             _pool.Enqueue(carrot);
         }
 
-        // Nuevo método para generar zanahorias en posiciones aleatorias
         public List<Carrot> SpawnCarrots(int count, int screenWidth, int screenHeight, int carrotSize = 64)
         {
+            if (screenWidth <= carrotSize || screenHeight <= carrotSize)
+                throw new ArgumentException("El tamaño de pantalla debe ser mayor que el tamaño de la zanahoria.");
+
             var carrots = new List<Carrot>();
             for (int i = 0; i < count; i++)
             {
+                Debug.Print($"Spawning carrot {i + 1}/{count}");
                 var type = GetCarrot();
                 var carrot = new Carrot(type);
                 float x = _random.Next(0, screenWidth - carrotSize);
@@ -56,3 +58,4 @@ namespace MyGame
         }
     }
 }
+   

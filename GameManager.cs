@@ -9,6 +9,7 @@ public class GameManager
 
     public Player Player;
     public EnemyFactory EnemyFactory;
+    public CarrotFactory carrotFactory;
     public List<IUpdatable> updatables = new List<IUpdatable>();
     public List<IDrawable> drawables = new List<IDrawable>();
     public IScene currentScene;
@@ -29,6 +30,24 @@ public class GameManager
         drawables.Remove(entity);
     }
 
+    public void RegisterCarrots(List<Carrot> carrots)
+    {
+        foreach (var carrot in carrots)
+        {
+            updatables.Add(carrot);
+            drawables.Add(carrot);
+        }
+    }
+
+    public void UnregisterCarrots(List<Carrot> carrots)
+    {
+        foreach (var carrot in carrots)
+        {
+            updatables.Remove(carrot);
+            drawables.Remove(carrot);
+        }
+    }
+
     public void SetScene(IScene scene)
     {
         updatables.Clear();
@@ -41,7 +60,6 @@ public class GameManager
     {
         GameTime += deltaTime;
 
-        // Create a copy of the list to iterate over
         var updatablesCopy = new List<IUpdatable>(updatables);
 
         foreach (var u in updatablesCopy)

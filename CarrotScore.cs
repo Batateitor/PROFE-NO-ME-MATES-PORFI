@@ -37,12 +37,7 @@ namespace MyGame
 
         public void Render(int x, int y, Font font, byte r = 255, byte g = 255, byte b = 0)
         {
-            Engine.DrawText(
-                $"Puntaje: {_score}",
-                x, y,
-                r, g, b,
-                font
-            );
+            Engine.DrawText($"Puntaje: {_score}", x, y, r, g, b, font);
         }
     }
 }

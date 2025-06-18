@@ -5,6 +5,6 @@
     protected override void RandomizeDirection()
     {
         base.RandomizeDirection();
-        speed += 20; // un poco más rápido
+        speed *= 2;
     }
 }

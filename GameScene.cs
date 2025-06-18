@@ -12,13 +12,14 @@ public class GameScene : IScene
     private List<Enemy> activeEnemies = new List<Enemy>();
     private Timer timer;
 
-    // Agrega estos campos en tu clase GameScene
     private List<Carrot> activeCarrots = new List<Carrot>();
     private CarrotFactory carrotFactory = new CarrotFactory();
     private Font font = Engine.LoadFont("assets/arial.ttf", 24);
 
     public void Start()
     {
+        GameManager.Instance.carrotFactory = this.carrotFactory;
+
         Image imgWhite = Engine.LoadImage("assets/FantasmitaUwU.png");
         Image imgBlue = Engine.LoadImage("assets/FantasmitaUwUAzul.png");
         Image imgRed = Engine.LoadImage("assets/FantasmitaUwURojo.png");
@@ -32,6 +33,7 @@ public class GameScene : IScene
 
         for (int i = 0; i < 2; i++)
             GameManager.Instance.EnemyFactory.Spawn();
+        GameManager.Instance.carrotFactory.SpawnCarrots(10, 1024, 768, 64);
 
         foreach (var enemy in GameManager.Instance.EnemyFactory.GetType().GetField("activeEnemies", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(GameManager.Instance.EnemyFactory) as List<Enemy>)
         {
@@ -44,7 +46,7 @@ public class GameScene : IScene
             };
         }
 
-        timer = new Timer(30f); // Inicializa el Timer con 30 segundos
+        timer = new Timer(30f);
     }
 
     public void Update(float deltaTime)
@@ -56,7 +58,7 @@ public class GameScene : IScene
             spawnTimer = 0;
         }
 
-        timer.Update(deltaTime); // Actualiza el Timer
+        timer.Update(deltaTime);
         GameManager.Instance.Update(deltaTime);
 
         if (timer.IsComplete())
