@@ -11,7 +11,7 @@ public class EnemyFactory
     private Image imgBlue;
     private Image imgRed;
 
-    private List<Enemy> activeEnemies = new List<Enemy>(); // Fixed type to match List<Enemy>
+    private List<Enemy> activeEnemies = new List<Enemy>();
 
     private Random rand = new Random();
 
@@ -25,13 +25,12 @@ public class EnemyFactory
         poolBlue = new ObjectPool<EnemyBlue>(() => new EnemyBlue(imgBlue));
         poolRed = new ObjectPool<EnemyRed>(() => new EnemyRed(imgRed));
 
-        // Removed redundant initialization of activeEnemies
     }
 
     public void Spawn()
     {
         int type = rand.Next(0, 3);
-        Enemy enemy = null; // Changed type to Enemy to match List<Enemy>
+        Enemy enemy = null;
 
         switch (type)
         {
@@ -40,12 +39,11 @@ public class EnemyFactory
             case 2: enemy = poolRed.Get(); break;
         }
 
-        enemy.ResetLifetime(); // Reinicia el tiempo de vida
+        enemy.ResetLifetime();
 
         activeEnemies.Add(enemy);
         GameManager.Instance.RegisterEntity(enemy);
 
-        // Configurar colisiones
         enemy.Collider.others.Add(GameManager.Instance.Player.Collider);
         GameManager.Instance.Player.Collider.others.Add(enemy.Collider);
 

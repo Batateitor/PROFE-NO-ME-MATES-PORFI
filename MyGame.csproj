@@ -48,9 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Carrot.cs" />
-    <Compile Include="CarrotType.cs" />
     <Compile Include="CarrotFactory.cs" />
     <Compile Include="CarrotScore.cs" />
+    <Compile Include="CarrotType.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="Collider.cs" />
     <Compile Include="Enemy.cs" />

@@ -1,4 +1,5 @@
 ﻿using MyGame;
+using System;
 
 public class LoseScene : IScene
 {
@@ -6,7 +7,7 @@ public class LoseScene : IScene
 
     public void Start() 
     {
-        CarrotScore.Instance.ResetScore();
+
     }
 
     public void Update()
@@ -25,5 +26,7 @@ public class LoseScene : IScene
     {
         Engine.DrawText("YOU LOSE!", 450, 350, 255, 0, 0, font);
         Engine.DrawText("M: Menu   SPACE: Retry", 350, 400, 255, 255, 255, font);
+        CarrotScore.Instance.DrawFinal(font);
+
     }
 }

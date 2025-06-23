@@ -11,15 +11,10 @@ public class GameScene : IScene
     float spawnTimer = 0;
     private List<Enemy> activeEnemies = new List<Enemy>();
     private Timer timer;
-
-    private List<Carrot> activeCarrots = new List<Carrot>();
-    private CarrotFactory carrotFactory = new CarrotFactory();
     private Font font = Engine.LoadFont("assets/arial.ttf", 24);
 
     public void Start()
     {
-        GameManager.Instance.carrotFactory = this.carrotFactory;
-
         Image imgWhite = Engine.LoadImage("assets/FantasmitaUwU.png");
         Image imgBlue = Engine.LoadImage("assets/FantasmitaUwUAzul.png");
         Image imgRed = Engine.LoadImage("assets/FantasmitaUwURojo.png");
@@ -33,7 +28,24 @@ public class GameScene : IScene
 
         for (int i = 0; i < 2; i++)
             GameManager.Instance.EnemyFactory.Spawn();
-        GameManager.Instance.carrotFactory.SpawnCarrots(10, 1024, 768, 64);
+        
+        CarrotScore.Instance.ResetScore();
+
+        
+        List<Carrot> carrots = GameManager.Instance.carrotFactory.SpawnCarrots(10, 1024, 768);
+        foreach (var carrot in carrots)
+        {
+            GameManager.Instance.RegisterEntity(carrot);
+            GameManager.Instance.Player.Collider.others.Add(carrot.Collider);
+            carrot.Collider.others.Add(GameManager.Instance.Player.Collider);
+
+            carrot.Collider.OnCollision += (c) =>
+            {
+                CarrotScore.Instance.AddScore(carrot.Points);
+                GameManager.Instance.UnregisterEntity(carrot);
+            };
+        }
+
 
         foreach (var enemy in GameManager.Instance.EnemyFactory.GetType().GetField("activeEnemies", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(GameManager.Instance.EnemyFactory) as List<Enemy>)
         {
@@ -62,7 +74,9 @@ public class GameScene : IScene
         GameManager.Instance.Update(deltaTime);
 
         if (timer.IsComplete())
+        {
             GameManager.Instance.SetScene(new WinScene());
+        }
     }
 
     public void Render()
@@ -74,6 +88,7 @@ public class GameScene : IScene
         int y = 10;
         timer.Draw(x, y);
 
-        CarrotScore.Instance.Render(20, 20, font, 255, 255, 0);
+        CarrotScore.Instance.Draw(font);
+
     }
 }

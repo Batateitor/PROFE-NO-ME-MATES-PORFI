@@ -73,20 +73,5 @@ namespace MyGame
 
             base.Update(deltaTime);
         }
-
-        public void CollectCarrot(CarrotType carrot, CarrotFactory factory)
-        {
-            int carrotValue = carrot.GetScoreValue();
-            Score += carrotValue;
-            factory.ReturnCarrot(carrot);
-        }
-
-        private void OnCarrotCollision(CarrotType carrot, CarrotFactory factory)
-        {
-            int carrotValue = carrot.GetScoreValue();
-            CarrotScore.Instance.AddScore(carrotValue);
-
-            factory.ReturnCarrot(carrot);
-        }
     }
 }

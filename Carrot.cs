@@ -1,42 +1,30 @@
-using MyGame;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Carrot : Entity
+namespace MyGame
 {
-    public CarrotType Type { get; }
-    public int Points { get; }
-    public string ImagePath { get; }
-
-    public Carrot(CarrotType type)
-        : base(new Image(GetImagePath(type)), 64, 64)
+    public class Carrot : Entity, IPoolable
     {
-        this.Type = type;
-        Points = GetPoints(type);
-        ImagePath = GetImagePath(type);
-    }
+        public CarrotType Type { get; private set; }
+        public int Points => Type.GetScoreValue();
 
-    private static string GetImagePath(CarrotType type)
-    {
-        switch (type)
+        public Carrot(CarrotType type) : base(new Image(type.GetImagePath()), 64, 64)
         {
-            case CarrotType.Rare:
-                return "assets/carrot_rare.png";
-            case CarrotType.Epic:
-                return "assets/carrot_epic.png";
-            default:
-                return "assets/carrot_common.png";
+            Type = type;
+        }
+
+        public void OnGetFromPool()
+        {
+
+        }
+
+        public void OnReturnToPool()
+        {
+
         }
     }
 
-    private int GetPoints(CarrotType type)
-    {
-        switch (type)
-        {
-            case CarrotType.Rare:
-                return 10;
-            case CarrotType.Epic:
-                return 20;
-            default:
-                return 5;
-        }
-    }
 }

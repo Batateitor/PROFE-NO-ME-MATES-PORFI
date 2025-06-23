@@ -6,38 +6,46 @@ using System.Threading.Tasks;
 
 namespace MyGame
 {
-    internal class CarrotScore
+    public class CarrotScore
     {
-        private static CarrotScore _instance;
-        private int _score;
-
-        private CarrotScore() { }
-
+        private static CarrotScore instance;
         public static CarrotScore Instance
         {
             get
             {
-                if (_instance == null)
-                    _instance = new CarrotScore();
-                return _instance;
+                if (instance == null)
+                    instance = new CarrotScore();
+                return instance;
             }
         }
 
-        public int Score => _score;
 
-        public void AddScore(int value)
+        private int score = 0;
+        private int highScore = 0;
+
+        public void ResetScore() => score = 0;
+
+        public void AddScore(int points)
         {
-            _score += value;
+            score += points;
+            if (score > highScore)
+                highScore = score;
         }
 
-        public void ResetScore()
+        public int Score => score;
+        public int HighScore => highScore;
+
+        public void Draw(Font font)
         {
-            _score = 0;
+            Engine.DrawText($"Score: {score}", 800, 10, 255, 255, 0, font);
         }
 
-        public void Render(int x, int y, Font font, byte r = 255, byte g = 255, byte b = 0)
+        public void DrawFinal(Font font)
         {
-            Engine.DrawText($"Puntaje: {_score}", x, y, r, g, b, font);
+            Engine.DrawText($"Final Score: {score}", 450, 300, 255, 255, 0, font);
+            Engine.DrawText($"High Score: {highScore}", 450, 340, 0, 255, 0, font);
         }
+
     }
+
 }

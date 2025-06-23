@@ -1,4 +1,5 @@
 ﻿using MyGame;
+using System;
 
 public class WinScene : IScene
 {
@@ -6,7 +7,7 @@ public class WinScene : IScene
 
     public void Start()
     {
-        CarrotScore.Instance.ResetScore();
+    
     }
 
     public void Update()
@@ -25,5 +26,6 @@ public class WinScene : IScene
     {
         Engine.DrawText("YOU WIN!", 450, 350, 0, 255, 0, font);
         Engine.DrawText("M: Menu   SPACE: Retry", 350, 400, 255, 255, 255, font);
+        CarrotScore.Instance.DrawFinal(font);
     }
 }
