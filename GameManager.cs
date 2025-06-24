@@ -16,7 +16,10 @@ public class GameManager
     public bool IsRunning = true;
     public float GameTime;
 
-    private GameManager() { }
+    private GameManager() 
+    {
+        carrotFactory = new CarrotFactory();
+    }
 
     public void RegisterEntity(Entity entity)
     {

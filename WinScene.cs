@@ -24,8 +24,8 @@ public class WinScene : IScene
 
     public void Render()
     {
-        Engine.DrawText("YOU WIN!", 450, 350, 0, 255, 0, font);
-        Engine.DrawText("M: Menu   SPACE: Retry", 350, 400, 255, 255, 255, font);
-        CarrotScore.Instance.DrawFinal(font);
+        Engine.DrawText("YOU WIN!", 450, 250, 0, 255, 0, font);
+        Engine.DrawText("M: Menu   SPACE: Retry", 400, 400, 255, 255, 255, font);
+        CarrotScore.Instance.DrawFinal();
     }
 }

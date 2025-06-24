@@ -14,6 +14,7 @@ namespace MyGame
         public Carrot(CarrotType type) : base(new Image(type.GetImagePath()), 64, 64)
         {
             Type = type;
+            Console.WriteLine(type.GetImagePath());
         }
 
         public void OnGetFromPool()

@@ -43,7 +43,6 @@ public class EnemyFactory
 
         activeEnemies.Add(enemy);
         GameManager.Instance.RegisterEntity(enemy);
-
         enemy.Collider.others.Add(GameManager.Instance.Player.Collider);
         GameManager.Instance.Player.Collider.others.Add(enemy.Collider);
 

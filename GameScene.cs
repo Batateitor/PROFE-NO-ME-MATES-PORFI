@@ -31,6 +31,7 @@ public class GameScene : IScene
         
         CarrotScore.Instance.ResetScore();
 
+        GameManager.Instance.carrotFactory = new CarrotFactory();
         
         List<Carrot> carrots = GameManager.Instance.carrotFactory.SpawnCarrots(10, 1024, 768);
         foreach (var carrot in carrots)
@@ -84,11 +85,11 @@ public class GameScene : IScene
         Engine.Draw(background, 0, 0);
         GameManager.Instance.Draw();
 
-        int x = 1024 - 10 - 220;
+        int x = 254 - 10 - 220;
         int y = 10;
         timer.Draw(x, y);
 
-        CarrotScore.Instance.Draw(font);
+        CarrotScore.Instance.Draw();
 
     }
 }

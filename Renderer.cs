@@ -14,6 +14,7 @@
 
     public void Draw()
     {
-        Engine.Draw(image, transform.Position.X, transform.Position.Y, width, height);
+        if (image != null && transform != null)
+            Engine.Draw(image, transform.Position.X, transform.Position.Y, width, height);
     }
 }

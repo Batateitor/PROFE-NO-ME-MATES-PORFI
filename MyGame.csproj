@@ -109,6 +109,7 @@
     <None Include="assets\ARIALNI.TTF" />
     <None Include="assets\ARIBLK.TTF" />
     <None Include="bin\Debug\MyGame.exe.config" />
+    <None Include="bin\Release\assets\arial.ttf" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Debug\MyGame.csproj.AssemblyReference.cache" />
@@ -117,7 +118,6 @@
     <None Include="obj\Debug\MyGame.exe.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Release\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
@@ -254,6 +254,36 @@
     <Content Include="bin\Debug\SDL_ttf.dll" />
     <Content Include="bin\Debug\Tao.Sdl.dll" />
     <Content Include="bin\Debug\zlib1.dll" />
+    <Content Include="bin\Release\assets\Asteroid\Idle\0.png" />
+    <Content Include="bin\Release\assets\Asteroid\Idle\1.png" />
+    <Content Include="bin\Release\assets\Asteroid\Idle\2.png" />
+    <Content Include="bin\Release\assets\Asteroid\Idle\3.png" />
+    <Content Include="bin\Release\assets\bosquetenebrosoUUUUUU.png" />
+    <Content Include="bin\Release\assets\bullet.png" />
+    <Content Include="bin\Release\assets\Bullet\Idle\0.png" />
+    <Content Include="bin\Release\assets\Bullet\Idle\1.png" />
+    <Content Include="bin\Release\assets\Bullet\Idle\2.png" />
+    <Content Include="bin\Release\assets\Bullet\Idle\3.png" />
+    <Content Include="bin\Release\assets\carrot_common.png" />
+    <Content Include="bin\Release\assets\carrot_epic.png" />
+    <Content Include="bin\Release\assets\carrot_rare.png" />
+    <Content Include="bin\Release\assets\enemy.png" />
+    <Content Include="bin\Release\assets\Enemy\Idle\0.png" />
+    <Content Include="bin\Release\assets\Enemy\Idle\1.png" />
+    <Content Include="bin\Release\assets\Enemy\Idle\2.png" />
+    <Content Include="bin\Release\assets\Enemy\Idle\3.png" />
+    <Content Include="bin\Release\assets\FantasmitaUwU.png" />
+    <Content Include="bin\Release\assets\FantasmitaUwUAzul.png" />
+    <Content Include="bin\Release\assets\FantasmitaUwURojo.png" />
+    <Content Include="bin\Release\assets\fondo.png" />
+    <Content Include="bin\Release\assets\Lose.png" />
+    <Content Include="bin\Release\assets\MainMenu.png" />
+    <Content Include="bin\Release\assets\player.png" />
+    <Content Include="bin\Release\assets\Ship\Idle\0.png" />
+    <Content Include="bin\Release\assets\Ship\Idle\1.png" />
+    <Content Include="bin\Release\assets\Ship\Idle\2.png" />
+    <Content Include="bin\Release\assets\Ship\Idle\3.png" />
+    <Content Include="bin\Release\assets\Win.png" />
     <Content Include="obj\Debug\MyGame.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\MyGame.exe" />
     <Content Include="obj\Debug\MyGame.pdb" />
